@@ -13,7 +13,7 @@ public sealed record Name
         if (value.Length < MinLength || value.Length > MaxLength)
             throw new ArgumentException($"Value must be between {MinLength} and {MaxLength} characters.", nameof(value));
         
-        Value = value;
+        Value = value.Trim();
     }
     
     public string Value { get; }
