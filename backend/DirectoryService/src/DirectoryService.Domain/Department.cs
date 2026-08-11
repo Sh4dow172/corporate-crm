@@ -1,5 +1,4 @@
 using DirectoryService.Domain.VO;
-using Path = System.IO.Path;
 
 namespace DirectoryService.Domain;
 
@@ -24,6 +23,20 @@ public class Department
         if (parentId == Guid.Empty)
         {
             throw new ArgumentException("Identifier cannot be empty.", nameof(parentId));
+        }
+
+        if (parentId.HasValue && parentPath == null)
+        {
+            throw new ArgumentException(
+                "Parent path must be provided when a parent ID is specified to prevent tree corruption.",
+                nameof(parentPath));
+        }
+
+        if (!parentId.HasValue && parentPath != null)
+        {
+            throw new ArgumentException(
+                "Root department cannot have a parent path.",
+                nameof(parentPath));
         }
         
         Id = id;
