@@ -1,3 +1,5 @@
+using DirectoryService.Infrastructure.Postgres;
+using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
@@ -7,6 +9,10 @@ builder.Services.AddOpenApi();
 
 // Для тестового контроллера
 builder.Services.AddControllers();
+
+var connectionString = builder.Configuration.GetConnectionString("PostgresConnection");
+
+builder.Services.AddDbContext<DirectoryServiceDbContext>(options => options.UseNpgsql(connectionString));
 
 WebApplication app = builder.Build();
 
