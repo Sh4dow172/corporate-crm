@@ -2,6 +2,11 @@ namespace DirectoryService.Domain.VO;
 
 public sealed record DepartmentPath
 {
+    //ef core
+    private DepartmentPath()
+    {
+    }
+    
     public DepartmentPath(DepartmentPath? parentPath, Slug currentSlug)
     {
         if (currentSlug == null)
@@ -23,6 +28,6 @@ public sealed record DepartmentPath
         
         Value = assembledPath;
     }
-    
-    public string Value { get; }
+
+    public string Value { get; } = null!;
 }

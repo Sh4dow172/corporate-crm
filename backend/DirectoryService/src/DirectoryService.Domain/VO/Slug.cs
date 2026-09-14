@@ -8,7 +8,7 @@ public sealed partial record Slug
     [GeneratedRegex(@"^[a-z0-9]+(?:-[a-z0-9]+)*$", RegexOptions.Compiled, matchTimeoutMilliseconds: 1000)]
     private static partial Regex GetSlugRegex();
     
-    [SuppressMessage("Globalization", "CA1308:Normalize strings to uppercase", 
+    [SuppressMessage("Globalization", "CA1308:Normalize strings to uppercase",
         Justification = "Слаги для URL традиционно должны быть строго в нижнем регистре.")]
     public Slug(string value)
     {
