@@ -1,5 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using DirectoryService.Contracts;
+using DirectoryService.Core.Locations;
+using DirectoryService.Domain;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DirectoryService.Web.Controllers;
@@ -9,10 +11,18 @@ namespace DirectoryService.Web.Controllers;
 [SuppressMessage("Maintainability", "CA1515")]
 public sealed class LocationsController : ControllerBase
 {
-    [HttpPost]
-    public IActionResult Create([FromBody] CreateLocationDto locationDto)
+    private readonly LocationsService _locationsService;
+
+    public LocationsController(LocationsService locationsService)
     {
-        return Ok(Guid.NewGuid());
+        _locationsService = locationsService;
+    }
+    
+    [HttpPost]
+    public async Task<IActionResult> Create([FromBody] CreateLocationDto locationDto, CancellationToken cancellationToken)
+    {
+        var id = await _locationsService.Create(locationDto, cancellationToken);
+        return Ok(id);
     }
 
     [HttpGet("{id:guid}")]

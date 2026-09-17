@@ -7,6 +7,7 @@ public sealed record Address
         string region,
         string city,
         string street,
+        string apartment,
         string houseNumber)
     {
         if (string.IsNullOrWhiteSpace(country))
@@ -21,18 +22,23 @@ public sealed record Address
         if (string.IsNullOrWhiteSpace(street))
             throw new ArgumentException("Value cannot be null or whitespace.", nameof(street));
         
+        if (string.IsNullOrWhiteSpace(apartment))
+            throw new ArgumentException("Value cannot be null or whitespace.", nameof(apartment));
+        
         if (string.IsNullOrWhiteSpace(houseNumber))
             throw new ArgumentException("Value cannot be null or whitespace.", nameof(houseNumber));
-        
+
         Country = country.Trim();
         Region = region.Trim();
         City = city.Trim();
         Street = street.Trim();
+        Apartment = apartment.Trim();
         HouseNumber = houseNumber.Trim();
     }
     public string Country { get; }
     public string Region { get; }
     public string City { get; }
     public string Street { get; }
+    public string Apartment { get; }
     public string HouseNumber { get; }
 }

@@ -41,6 +41,7 @@ namespace DirectoryService.Infrastructure.Postgres.Migrations
                     id = table.Column<Guid>(type: "uuid", nullable: false),
                     created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     updated_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    apartment = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
                     city = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
                     country = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
                     house_number = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),

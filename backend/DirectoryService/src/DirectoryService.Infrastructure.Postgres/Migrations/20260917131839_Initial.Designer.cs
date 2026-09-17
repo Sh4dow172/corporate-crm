@@ -13,7 +13,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DirectoryService.Infrastructure.Postgres.Migrations
 {
     [DbContext(typeof(DirectoryServiceDbContext))]
-    [Migration("20260914115805_Initial")]
+    [Migration("20260917131839_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -158,6 +158,12 @@ namespace DirectoryService.Infrastructure.Postgres.Migrations
                     b.ComplexProperty(typeof(Dictionary<string, object>), "Address", "DirectoryService.Domain.Location.Address#Address", b1 =>
                         {
                             b1.IsRequired();
+
+                            b1.Property<string>("Apartment")
+                                .IsRequired()
+                                .HasMaxLength(50)
+                                .HasColumnType("character varying(50)")
+                                .HasColumnName("apartment");
 
                             b1.Property<string>("City")
                                 .IsRequired()

@@ -45,6 +45,11 @@ public sealed class LocationConfiguration : IEntityTypeConfiguration<Location>
                 .HasColumnName("street")
                 .HasMaxLength(100)
                 .IsRequired();
+            
+            ab.Property(a => a.Apartment)
+                .HasColumnName("apartment")
+                .HasMaxLength(50)
+                .IsRequired();
 
             ab.Property(a => a.HouseNumber)
                 .HasColumnName("house_number")
