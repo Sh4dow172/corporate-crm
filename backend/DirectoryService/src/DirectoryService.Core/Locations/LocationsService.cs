@@ -16,13 +16,13 @@ public sealed class LocationsService
         _createLocationValidator = createLocationValidator;
     }
     
-    public async Task<Guid> Create(CreateLocationDto createLocationDto)
+    public async Task<Guid> Create(CreateLocationDto createLocationDto, CancellationToken cancellationToken)
     {
-        await _createLocationValidator.ValidateAndThrowAsync(createLocationDto);
+        await _createLocationValidator.ValidateAndThrowAsync(createLocationDto, cancellationToken);
         
-        if (await _locationRepository.ExistsByNameAsync(createLocationDto.Name))
+        if (await _locationRepository.ExistsByNameAsync(createLocationDto.Name, cancellationToken))
         {
-            throw new LocationNameAlreadyExistsException("Location name already exists");
+            throw new LocationNameAlreadyExistsException("Локация с таким названием уже существует");
         }
         
         var locationId = Guid.NewGuid();
@@ -36,7 +36,7 @@ public sealed class LocationsService
 
         var name = new Name(createLocationDto.Name);
         
-        await _locationRepository.AddAsync(new Location(locationId, name, address));
+        await _locationRepository.AddAsync(new Location(locationId, name, address), cancellationToken);
         
         return locationId;
     }

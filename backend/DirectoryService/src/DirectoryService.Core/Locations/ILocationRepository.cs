@@ -4,7 +4,7 @@ namespace DirectoryService.Core.Locations;
 
 public interface ILocationRepository
 {
-    public Task<bool> ExistsByNameAsync(string name);
+    public Task<bool> ExistsByNameAsync(string name, CancellationToken cancellationToken = default);
     
-    public Task AddAsync(Location location);
+    public Task AddAsync(Location location, CancellationToken cancellationToken = default);
 }

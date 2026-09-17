@@ -8,27 +8,27 @@ public sealed class CreateLocationValidator : AbstractValidator<CreateLocationDt
     public CreateLocationValidator()
     {
         RuleFor(x => x.Name)
-            .NotEmpty().WithMessage("Name cannot be empty")
-            .MaximumLength(150).WithMessage("Name cannot be more than 150 characters");
+            .NotEmpty().WithMessage("Название не может быть пустым")
+            .MaximumLength(150).WithMessage("Название не может превышать 150 символов");
         
         RuleFor(x => x.Country)
-            .NotEmpty().WithMessage("Country cannot be empty")
-            .MaximumLength(100).WithMessage("Country cannot be more than 100 characters");
+            .NotEmpty().WithMessage("Страна не может быть пустой")
+            .MaximumLength(100).WithMessage("Название страны не может превышать 100 symbols");
         
         RuleFor(x => x.Region)
-            .NotEmpty().WithMessage("Region cannot be empty")
-            .MaximumLength(100).WithMessage("Region cannot be more than 100 characters");
+            .NotEmpty().WithMessage("Регион не может быть пустым")
+            .MaximumLength(100).WithMessage("Название региона не может превышать 100 символов");
         
         RuleFor(x => x.City)
-            .NotEmpty().WithMessage("City cannot be empty")
-            .MaximumLength(100).WithMessage("City cannot be more than 100 characters");
+            .NotEmpty().WithMessage("Город не может быть пустым")
+            .MaximumLength(100).WithMessage("Название города не может превышать 100 символов");
             
         RuleFor(x => x.Street)
-            .NotEmpty().WithMessage("Street cannot be empty")
-            .MaximumLength(100).WithMessage("Street cannot be more than 100 characters");
+            .NotEmpty().WithMessage("Улица не может быть пустой")
+            .MaximumLength(100).WithMessage("Название улицы не может превышать 100 символов");
             
         RuleFor(x => x.HouseNumber)
-            .NotEmpty().WithMessage("HouseNumber cannot be empty")
-            .MaximumLength(50).WithMessage("HouseNumber cannot be more than 50 characters");
+            .NotEmpty().WithMessage("Номер дома не может быть пустым")
+            .MaximumLength(50).WithMessage("Номер дома не может превышать 50 символов");
     }
 }

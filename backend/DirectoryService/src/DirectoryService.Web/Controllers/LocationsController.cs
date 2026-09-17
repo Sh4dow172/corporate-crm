@@ -19,9 +19,9 @@ public sealed class LocationsController : ControllerBase
     }
     
     [HttpPost]
-    public async Task<IActionResult> Create([FromBody] CreateLocationDto locationDto)
+    public async Task<IActionResult> Create([FromBody] CreateLocationDto locationDto, CancellationToken cancellationToken)
     {
-        var id = await _locationsService.Create(locationDto);
+        var id = await _locationsService.Create(locationDto, cancellationToken);
         return Ok(id);
     }
 
