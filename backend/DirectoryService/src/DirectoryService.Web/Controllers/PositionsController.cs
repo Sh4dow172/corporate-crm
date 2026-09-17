@@ -24,7 +24,7 @@ public sealed class PositionsController : ControllerBase
     [HttpGet]
     public IActionResult GetAll()
     {
-        return Ok();
+        return Ok(Array.Empty<Object>());
     }
 
     [HttpPut("{id:guid}")]
