@@ -32,6 +32,7 @@ public sealed class LocationsService
             createLocationDto.Region,
             createLocationDto.City,
             createLocationDto.Street,
+            createLocationDto.Apartment,
             createLocationDto.HouseNumber);
 
         var name = new Name(createLocationDto.Name);

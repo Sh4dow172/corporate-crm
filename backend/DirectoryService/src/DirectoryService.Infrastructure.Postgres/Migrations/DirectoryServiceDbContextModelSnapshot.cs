@@ -156,6 +156,12 @@ namespace DirectoryService.Infrastructure.Postgres.Migrations
                         {
                             b1.IsRequired();
 
+                            b1.Property<string>("Apartment")
+                                .IsRequired()
+                                .HasMaxLength(50)
+                                .HasColumnType("character varying(50)")
+                                .HasColumnName("apartment");
+
                             b1.Property<string>("City")
                                 .IsRequired()
                                 .HasMaxLength(100)

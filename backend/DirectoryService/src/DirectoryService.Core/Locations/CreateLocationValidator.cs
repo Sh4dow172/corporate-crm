@@ -13,7 +13,7 @@ public sealed class CreateLocationValidator : AbstractValidator<CreateLocationDt
         
         RuleFor(x => x.Country)
             .NotEmpty().WithMessage("Страна не может быть пустой")
-            .MaximumLength(100).WithMessage("Название страны не может превышать 100 symbols");
+            .MaximumLength(100).WithMessage("Название страны не может превышать 100 символов");
         
         RuleFor(x => x.Region)
             .NotEmpty().WithMessage("Регион не может быть пустым")
@@ -26,6 +26,10 @@ public sealed class CreateLocationValidator : AbstractValidator<CreateLocationDt
         RuleFor(x => x.Street)
             .NotEmpty().WithMessage("Улица не может быть пустой")
             .MaximumLength(100).WithMessage("Название улицы не может превышать 100 символов");
+        
+        RuleFor(x => x.Apartment)
+            .NotEmpty().WithMessage("Квартира не может быть пустой")
+            .MaximumLength(50).WithMessage("Номер квартиры не может превышать 50 символов");
             
         RuleFor(x => x.HouseNumber)
             .NotEmpty().WithMessage("Номер дома не может быть пустым")
