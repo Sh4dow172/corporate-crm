@@ -1,5 +1,6 @@
 using DirectoryService.Domain;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace DirectoryService.Infrastructure.Postgres;
 
@@ -20,5 +21,4 @@ public sealed class DirectoryServiceDbContext : DbContext
     public DbSet<Position> Positions { get; private set; } = null!;
     public DbSet<DepartmentLocation> DepartmentLocations { get; private set; } = null!;
     public DbSet<DepartmentPosition> DepartmentPositions { get; private set; } = null!;
-
 }
