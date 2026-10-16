@@ -1,18 +1,35 @@
+using DirectoryService.Core.Locations;
 using DirectoryService.Infrastructure.Postgres;
+using DirectoryService.Infrastructure.Postgres.Database;
+using DirectoryService.Infrastructure.Postgres.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
-// Нативный OpenAPI .NET 9/10
 builder.Services.AddOpenApi();
 
-// Для тестового контроллера
 builder.Services.AddControllers();
 
-var connectionString = builder.Configuration.GetConnectionString("PostgresConnection");
+var connectionString = builder.Configuration.GetConnectionString("PostgresConnection")
+                       ?? throw new InvalidOperationException("Строка подключения 'PostgresConnection' не найдена в appsettings.json.");
+
+var repositoryProvider = builder.Configuration["RepositorySettings:Provider"];
+
+if (string.Equals(repositoryProvider, "Dapper", StringComparison.OrdinalIgnoreCase))
+{
+    builder.Services.AddScoped<IDbConnectionFactory>(sp => new NpgsqlConnectionFactory(connectionString));
+    builder.Services.AddScoped<ILocationRepository, DapperLocationRepository>();
+}
+else
+{
+    builder.Services.AddScoped<ILocationRepository, EfLocationRepository>();
+}
 
 builder.Services.AddDbContext<DirectoryServiceDbContext>(options => options.UseNpgsql(connectionString));
+
+builder.Services.AddScoped<CreateLocationValidator>();
+builder.Services.AddScoped<LocationsService>();
 
 WebApplication app = builder.Build();
 
