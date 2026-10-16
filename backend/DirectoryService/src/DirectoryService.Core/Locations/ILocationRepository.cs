@@ -1,4 +1,3 @@
-using System.Data;
 using DirectoryService.Domain;
 
 namespace DirectoryService.Core.Locations;

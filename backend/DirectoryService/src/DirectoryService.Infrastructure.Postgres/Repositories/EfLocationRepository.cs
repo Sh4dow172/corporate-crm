@@ -1,4 +1,3 @@
-using System.Data;
 using DirectoryService.Core.Locations;
 using DirectoryService.Domain;
 using Microsoft.Extensions.Logging;
